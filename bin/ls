@@ -1,0 +1,9 @@
+#!/bin/sh
+
+DIRNAME=$(cd `dirname $0`; dirname `pwd`)
+
+if ! [ -f $DIRNAME/ls.beam ]; then
+  erlc -o $DIRNAME/ $DIRNAME/ls.erl
+fi
+
+erl -noshell -pa $DIRNAME -s ls main $* -s init stop
